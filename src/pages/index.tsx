@@ -1,5 +1,11 @@
-import Home from 'templates/Home';
+import { GetServerSideProps } from 'next';
 
 export default function Index() {
-  return <Home />;
+  return <h1>Hello world</h1>;
 }
+
+export const getServerSideProps: GetServerSideProps = async () => {
+  return {
+    props: {},
+  };
+};
