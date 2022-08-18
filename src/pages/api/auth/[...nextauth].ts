@@ -49,4 +49,30 @@ export default NextAuth({
       },
     }),
   ],
+  callbacks: {
+    async jwt({ token, user }) {
+      // Persist the OAuth access_token to the token right after signin
+      const isSignIn = !!user;
+      const actualDate = Math.floor(Date.now() / 1000); // actual date on seconds
+      const tokenExpiration = Math.floor(7 * 24 * 60 * 60); // 7 days
+
+      if (isSignIn) {
+        if (!user || !user.jwt || !user.name || !user.email) {
+          return Promise.resolve({});
+        }
+        token.jwt = user.jwt;
+        token.id = user.id;
+        token.name = user.name;
+        token.email = user.email;
+        token.expiration = Math.floor(actualDate + tokenExpiration);
+      } else {
+        if (!token?.expiration) return Promise.resolve({});
+
+        if (actualDate > token.expiration) return Promise.resolve({});
+        console.log('usuario logado', token);
+      }
+
+      return Promise.resolve(token);
+    },
+  },
 });
