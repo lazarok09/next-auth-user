@@ -14,7 +14,10 @@
     "isolatedModules": true,
     "moduleResolution": "node",
     "jsx": "preserve",
-    "baseUrl": "src"
+    "baseUrl": "src",
+    "paths": {
+      "@types/*": ["src/types/auth.d.ts"]
+    }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
   "exclude": ["node_modules"]

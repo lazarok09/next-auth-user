@@ -1,6 +1,7 @@
 import { gqlClient } from 'graphql/client';
 import { GQL_MUTATION_AUTHENTICATE_USER } from 'graphql/mutations/auth';
 import NextAuth from 'next-auth';
+
 import CredentialsProvider from 'next-auth/providers/credentials';
 
 export default NextAuth({
@@ -73,6 +74,24 @@ export default NextAuth({
       }
 
       return Promise.resolve(token);
+    },
+    async session({ token, session }) {
+      if (
+        !token?.jwt ||
+        !token?.id ||
+        !token?.name ||
+        !token.email ||
+        !token?.expiration
+      ) {
+        return null;
+      }
+      session.accessToken = token.jwt as string;
+      session.user = {
+        id: token.id as string,
+        name: token.name,
+        email: token.email,
+      };
+      return { ...session };
     },
   },
 });
