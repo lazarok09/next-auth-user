@@ -22,6 +22,7 @@ export default NextAuth({
         password: { label: 'Password', type: 'password' },
       },
       async authorize(credentials) {
+        if (!credentials?.email || !credentials?.password) return null;
         try {
           const { login } = await gqlClient.request(
             GQL_MUTATION_AUTHENTICATE_USER,
