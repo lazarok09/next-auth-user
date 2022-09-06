@@ -6,7 +6,7 @@ export default function Index() {
   const { data } = useSession();
   return (
     <Wrapper>
-      <h1>Olá {data?.user?.name}</h1>
+      <h1>Posts {data?.user?.name}</h1>
     </Wrapper>
   );
 }
