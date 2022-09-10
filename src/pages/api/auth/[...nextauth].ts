@@ -71,7 +71,6 @@ export default NextAuth({
         if (!token?.expiration) return Promise.resolve({});
 
         if (actualDate > token.expiration) return Promise.resolve({});
-        console.log('usuario logado', token);
       }
 
       return Promise.resolve(token);

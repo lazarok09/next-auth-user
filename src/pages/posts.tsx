@@ -10,12 +10,6 @@ import { useEffect, useState } from 'react';
 import { frontEndRedirect } from 'utils/front-end-redirect';
 import { serverSideRedirect } from 'utils/server-side-redirect';
 
-export type StrapiPost = {
-  title: string;
-  content: string;
-  id?: string;
-};
-
 export type PostPageProps = {
   posts?: StrapiPost[];
 };
