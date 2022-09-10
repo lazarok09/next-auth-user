@@ -43,8 +43,6 @@ export const Menu = () => {
           <a>Login</a>
         </Link>
       )}
-
-      <span>Oi</span>
     </Styled.Wrapper>
   );
 };
