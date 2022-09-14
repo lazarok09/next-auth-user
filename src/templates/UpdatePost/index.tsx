@@ -28,6 +28,14 @@ export function UpdatePostTemplate({ post }: UpdatePostTemplateProps) {
       alert('erro ao salvar o post');
     }
   };
+
+  if (!post)
+    return (
+      <Wrapper>
+        <p>Post does not exists</p>
+      </Wrapper>
+    );
+
   return (
     <Wrapper>
       <FormPost onSave={handleSave} post={post} />
